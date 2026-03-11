@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>צבע אדום - מפת אזעקות בזמן אמת</title><meta name="google-site-verification" content="6Qyfe1LnOPrIR25lV3nc4cP8uXX27ZR_wxS0lyspXHs" />
+  <meta name="google-site-verification" content="6Qyfe1LnOPrIR25lV3nc4cP8uXX27ZR_wxS0lyspXHs" />
+  <title>צבע אדום - מפת אזעקות בזמן אמת</title>
   <style>
     body { margin:0; font-family: Arial, sans-serif; direction: rtl; background:#0d1117; color:#c9d1d9; }
     #container { display: flex; height: 100vh; position: relative; }
@@ -16,10 +17,10 @@
       padding: 15px;
       box-shadow: -2px 0 5px rgba(0,0,0,0.5);
     }
-    h2 { 
-      color: #ff4444; 
-      text-align: center; 
-      margin: 0 0 5px 0; 
+    h2 {
+      color: #ff4444;
+      text-align: center;
+      margin: 0 0 5px 0;
       font-size: 1.8em;
     }
     #timer {
@@ -36,15 +37,15 @@
       padding: 10px;
       border-radius: 6px;
     }
-    .no-alert { 
-      color: #56d364; 
-      background: rgba(86,211,100,0.15); 
-      border: 1px solid #56d364; 
+    .no-alert {
+      color: #56d364;
+      background: rgba(86,211,100,0.15);
+      border: 1px solid #56d364;
     }
-    .has-alert { 
-      color: #ff9999; 
-      background: rgba(255,68,68,0.15); 
-      border: 1px solid #ff4444; 
+    .has-alert {
+      color: #ff9999;
+      background: rgba(255,68,68,0.15);
+      border: 1px solid #ff4444;
     }
     .alert-list {
       display: grid;
@@ -89,7 +90,6 @@
     <div id="logo">
       <img src="logo.png" alt="לוגו צבע אדום">
     </div>
-
     <div id="sidebar">
       <h2>התראות-V1</h2>
       <div id="timer">רענון בעוד 5 שניות</div>
@@ -98,21 +98,17 @@
     </div>
     <div id="map"></div>
   </div>
-
   <audio id="sirenSound">
     <source src="siren1.mp3" type="audio/mpeg">
     הדפדפן שלך לא תומך בניגון אודיו.
   </audio>
-
   <script>
     const map = L.map('map', {
       zoomControl: false
     }).setView([31.8, 35.0], 8);
-
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: ''
     }).addTo(map);
-
   const places = {
   "אבו גוש": [31.807, 35.109],
   "אבו סנאן": [32.961, 35.168],
@@ -424,30 +420,6 @@
   "קיבוץ נטור": [33.070, 35.630],
   "קיבוץ שאר ישוב": [33.230, 35.650],
   "קיבוץ גבעת עוז": [32.550, 35.190],
-  "קיבוץ יפתח": [33.130, 35.430],
-  "קיבוץ דפנה": [33.230, 35.630],
-  "קיבוץ הגושרים": [33.220, 35.620],
-  "קיבוץ דן": [33.240, 35.650],
-  "קיבוץ שדה נחמיה": [33.180, 35.620],
-  "קיבוץ כפר גלעדי": [33.230, 35.620],
-  "קיבוץ נחל עוז": [33.220, 35.620],
-  "קיבוץ משגב עם": [33.230, 35.640],
-  "קיבוץ איילת השחר": [33.150, 35.570],
-  "קיבוץ כפר בלום": [33.170, 35.610],
-  "קיבוץ נטועה": [33.060, 35.310],
-  "קיבוץ יערה": [33.060, 35.240],
-  "קיבוץ אביבים": [33.088, 35.472],
-  "קיבוץ ביריה": [32.980, 35.500],
-  "קיבוץ עמיר": [33.180, 35.620],
-  "קיבוץ גונן": [33.120, 35.640],
-  "קיבוץ שמיר": [33.180, 35.660],
-  "קיבוץ להבות הבשן": [33.140, 35.650],
-  "קיבוץ עין זיוון": [33.240, 35.790],
-  "קיבוץ אורטל": [33.080, 35.760],
-  "קיבוץ מרום גולן": [33.130, 35.780],
-  "קיבוץ נטור": [33.070, 35.630],
-  "קיבוץ שאר ישוב": [33.230, 35.650],
-  "קיבוץ גבעת עוז": [32.550, 35.190],
   "עכו": [32.933, 35.082],
   "צפת": [32.965, 35.492],
   "טבריה": [32.795, 35.530],
@@ -459,7 +431,6 @@
   "ערד": [31.261, 35.213],
   "דימונה": [31.071, 35.032]
 };
-
     let markers = {};
     for (let city in places) {
       markers[city] = L.marker(places[city], {
@@ -470,34 +441,25 @@
         })
       }).addTo(map).bindPopup(city);
     }
-
     let previousAlerts = [];
     let secondsLeft = 5;
     let timerInterval;
-
     const statusText = document.getElementById('status-text');
     const timerText = document.getElementById('timer');
-
     function updateTimer() {
       timerText.textContent = `רענון בעוד ${secondsLeft} שניות`;
       secondsLeft--;
       if (secondsLeft < 0) secondsLeft = 5;
     }
-
     async function fetchAlerts() {
       const alertsDiv = document.getElementById('alerts');
       const audio = document.getElementById('sirenSound');
-
       secondsLeft = 5;
-
       try {
         let res = await fetch('https://www.kore.co.il/redAlert.json', { cache: 'no-cache' });
         let data = await res.json();
-
         alertsDiv.innerHTML = '';
-
         let currentAlerts = [];
-
         // איפוס כל המרקרים לגודל רגיל כחול
         for (let city in markers) {
           markers[city].setIcon(L.divIcon({
@@ -506,20 +468,16 @@
             className: ''
           }));
         }
-
         if (data && data.data && data.data.length > 0) {
           statusText.className = 'has-alert';
           statusText.textContent = 'יש אזעקות פעילות';
-
           const alertList = document.createElement('div');
           alertList.className = 'alert-list';
-
           data.data.forEach(city => {
             const p = document.createElement('p');
             p.className = 'alert';
             p.textContent = city;
             alertList.appendChild(p);
-
             if (markers[city]) {
               // שינוי לנקודה אדומה גדולה יותר כשיש אזעקה
               markers[city].setIcon(L.divIcon({
@@ -530,14 +488,11 @@
             }
             currentAlerts.push(city);
           });
-
           alertsDiv.appendChild(alertList);
-
           if (JSON.stringify(currentAlerts.sort()) !== JSON.stringify(previousAlerts.sort())) {
             audio.currentTime = 0;
             audio.play().catch(e => console.log("לא ניגן סאונד:", e));
           }
-
           previousAlerts = currentAlerts;
         } else {
           statusText.className = 'no-alert';
@@ -552,12 +507,9 @@
         console.error(e);
       }
     }
-
     timerInterval = setInterval(updateTimer, 1000);
-
     fetchAlerts();
-    setInterval(fetchAlerts, 5000);  // רענון כל 5 שניות
+    setInterval(fetchAlerts, 5000); // רענון כל 5 שניות
   </script>
 </body>
-
 </html>
